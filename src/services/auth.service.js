@@ -26,9 +26,9 @@ const authService = {
             return error
         }
     },
-    register: async function(userData){
+    register: async (userData)=>{
         try {
-            const hash = await bcrypt.hash(userData.password,10).then(res=>res)
+            let hash = await bcrypt.hash(userData.password,10).then(res=>res)
             userData.password = hash
             await userData.save()
             let token = await this.signToken(userData._id)

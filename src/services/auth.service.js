@@ -28,7 +28,7 @@ const authService = {
     },
     register: async ()=>{
         try {
-            let hash = await bcrypt.hash(userData.password,10).then(res=>res)
+            const hash = await bcrypt.hash(userData.password,10).then(res=>res)
             userData.password = hash
             await userData.save()
             let token = await this.signToken(userData._id)

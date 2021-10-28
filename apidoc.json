@@ -1,0 +1,8 @@
+{
+    "apidoc":{
+        "title": "Documentation API Backend-Express"
+    },
+    "name": "Backend_express",
+    "version": "0.0.1",
+    "description": "Documentación en línea de los endpoints del backend"
+}

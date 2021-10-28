@@ -8,10 +8,12 @@
     "dev": "nodemon src/app.js",
     "start": "node src/app.js"
   },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apidoc": "^0.50.1",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

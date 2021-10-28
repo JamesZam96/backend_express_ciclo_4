@@ -5,12 +5,14 @@ const cors = require('cors')
 const app = express()
 const authRoutes = require('./routes/auth.routes')
 require('dotenv').config()
+const path = require('path')
 
 //configuraciones
 app.set('port',process.env.PORT || 3000)
 mongoose.connect(process.env.DB_STRING)
 .then(db => console.log('Connected to mongo'))
 .catch(err => console.log(err))
+app.use('/documentation',express.static(path.join(__dirname,'../doc/')))
 
 //middlewares
 app.use(morgan('dev'))

@@ -1,6 +1,11 @@
 {
     "apidoc":{
-        "title": "Documentation API Backend-Express"
+        "title": "Documentation API Backend-Express",
+        "url": "https://backendc4g18.herokuapp.com/documentation",
+        "header":{
+            "title": "resume",
+            "filename": "header.md"
+        }
     },
     "name": "Backend_express",
     "version": "0.0.1",

@@ -94,7 +94,7 @@ router.post('/register', async (req,res)=>{
  * @apiDescription Ingreso de usuarios a la plataforma usando email y password
  * @apiParam {string} email Email del usuario que ingresa
  * @apiParam {string} password Contraseña del usuario
- * @apiSampleRequest localhost:3000/auth/login 
+ * @apiSampleRequest https://backendc4g18.herokuapp.com/auth/login 
  */
 router.post('/login', async (req,res)=>{
     try {

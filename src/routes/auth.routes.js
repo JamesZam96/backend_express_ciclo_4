@@ -3,6 +3,7 @@ const router = express.Router()
 const msg = require('../helpers/messages')
 const User = require('../models/user')
 const authService = require('../services/auth.service')
+const { check, validationResult } = require('express-validator')
 
 /**
  * @api {post} /register Registro de usuarios
@@ -74,9 +75,43 @@ const authService = require('../services/auth.service')
         "message": "user validation failed: email: Path `email` is required."
     }
 }
- * } 
+ * }
+ * @apiError (422) (Data error) error en la validación de los datos
+ * @apiErrorExample {json} Data-Error-Example
+ * HTTP/1.1 422 unprocessable entry
+ * {
+    "errors": [
+        {
+            "value": "z",
+            "msg": "nombre no valido, minimo dos caracteres, maximo 40 caracteres",
+            "param": "name",
+            "location": "body"
+        },
+        {
+            "value": "za",
+            "msg": "debe ser un email válido",
+            "param": "email",
+            "location": "body"
+        },
+        {
+            "value": "zam",
+            "msg": "contraseña debil",
+            "param": "password",
+            "location": "body"
+        }
+    ]
+} 
  */
-router.post('/register', async (req,res)=>{
+router.post('/register', [
+        check('name','nombre no valido, minimo dos caracteres, maximo 40 caracteres').isLength({min: 2, max: 40}),
+        check('email','debe ser un email válido').isEmail(),
+        check('password','contraseña debil').isStrongPassword()
+    ],
+    async (req,res)=>{
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+        return res.status(422).json({errors: errors.array()})
+    }
     try {
         const user = new User(req.body)
         const token = await authService.register(user)

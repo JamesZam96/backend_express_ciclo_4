@@ -6,6 +6,8 @@ const app = express()
 const authRoutes = require('./routes/auth.routes')
 require('dotenv').config()
 const path = require('path')
+const incomeRoutes = require('./routes/income.routes')
+const outcomeRoutes = require('./routes/outcome.routes')
 
 //configuraciones
 app.set('port',process.env.PORT || 3000)
@@ -21,6 +23,8 @@ app.use(express.urlencoded({extended:false}))
 
 //rutas
 app.use('/auth', authRoutes)
+app.use('/incomes', incomeRoutes)
+app.use('/outcomes', outcomeRoutes)
 
 //inicio del servidor
 app.listen(app.get('port'), ()=>{
